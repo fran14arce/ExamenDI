@@ -18,6 +18,15 @@ class Ejercicio3 extends React.Component {
           pero en este caso el botón sirve para eliminar el teléfono de la lista de favoritos<b> - 1,25 puntos</b>
         </li>
       </ul>
+
+      <ul>
+        {localStorage.getItem('tlfs').map((item) => {
+          return (
+            <ul>{item.imagen}</ul>
+          );
+        })}
+        <li>{localStorage.getItem('tlfs')}</li>
+      </ul>
     </div>
     );
   }
