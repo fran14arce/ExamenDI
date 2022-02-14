@@ -1,10 +1,11 @@
 import React from 'react';
-import { Table, Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Table, Button, Card } from 'react-bootstrap';
 
 class Ejercicio2 extends React.Component {
   constructor(props) {
     super(props);
     this.valorMarcas = React.createRef();
+    this.tlfsFavoritos = [];
     this.state = {
       tableData: [],
       marcas: [],
@@ -50,15 +51,17 @@ class Ejercicio2 extends React.Component {
   }
 
   añadirLocalStorage() {
-    const tlfs = [];
-    tlfs.push(
-      this.state.imagen,
-      this.state.marca,
-      this.state.sistema,
-      this.state.dimension,
-      this.state.almacenamiento
-    )
-    localStorage.setItem('tlfs', tlfs);
+    this.tlfsFavoritos.push({
+      imagen: this.state.imagen,
+      marca: this.state.marca,
+      sistema: this.state.sistema,
+      dimension: this.state.dimension,
+      almacenamiento: this.state.almacenamiento
+    });
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem('tlfs', JSON.stringify(this.tlfsFavoritos));
   }
 
   render() {
